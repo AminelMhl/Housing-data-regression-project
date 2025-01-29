@@ -60,9 +60,6 @@ for col in X.columns:
 X = X.dropna()
 y = y.dropna()
 
-# Exploratory Data Analysis (EDA)
-sns.pairplot(df)
-plt.show()
 
 # Correlation heatmap
 plt.figure(figsize=(12,8))
@@ -101,6 +98,15 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 print(f"Mean Squared Error: {mse}")
 print(f"R-squared: {r2}")
+
+# Visualizing actual vs. predicted prices
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, alpha=0.7)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color='red', linewidth=2)
+plt.title('Actual vs. Predicted Sale Prices')
+plt.xlabel('Actual Sale Prices')
+plt.ylabel('Predicted Sale Prices')
+plt.show()
 
 # Residual Plot
 residuals = y_test - y_pred
